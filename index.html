@@ -1,815 +1,121 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MR3D.KW — كاتلوج المنتجات</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MR.3D KW | كاتلوج المنتجات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f5efe8;--surface:#fff;--dark:#1a1612;--accent:#1a1612;--muted:#8a857e;--border:rgba(0,0,0,0.09);--gold:#a0845c;--radius:14px}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--dark);font-family:'Tajawal',sans-serif;min-height:100vh}
-header{background:var(--dark);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
-.header-logo{height:42px;width:42px;border-radius:50%;object-fit:contain;background:#fff}
-.header-tag{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);font-size:11px;padding:4px 12px;border-radius:20px}
-.header-cta{background:var(--gold);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none}
-.hero{background:var(--dark);padding:40px 20px 36px;display:flex;align-items:center;gap:24px;border-bottom:3px solid var(--dark)}
-.hero-logo{width:100px;height:100px;border-radius:50%;object-fit:contain;background:#fff;flex-shrink:0}
-.hero-title{font-family:'Syne',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:800;color:#fff;line-height:1.1}
-.hero-title em{color:var(--gold);font-style:normal}
-.hero-sub{color:rgba(255,255,255,0.45);font-size:14px;margin-top:10px;line-height:1.6}
-.filter-bar{padding:14px 16px;display:flex;gap:8px;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
-.filter-bar::-webkit-scrollbar{display:none}
-.filter-btn{background:transparent;border:1px solid var(--border);border-radius:20px;padding:7px 16px;font-family:'Tajawal',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
-.filter-btn.active{background:var(--dark);border-color:var(--dark);color:#fff;font-weight:700}
-.filter-btn.xbloom-btn{border-color:var(--gold);color:var(--gold)}
-.filter-btn.xbloom-btn.active{background:var(--gold);border-color:var(--gold);color:#fff}
-main{padding:24px 16px 120px}
-.section-wrap{margin-bottom:48px}
-.section-heading{display:flex;align-items:center;gap:10px;margin-bottom:20px}
-.section-heading h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:800}
-.section-heading h2.gold{color:var(--gold)}
-.section-count{background:var(--dark);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px}
-.section-count.gold{background:var(--gold)}
-.catalog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.product-card{background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:transform .2s,box-shadow .2s;position:relative}
-.product-card.hidden{display:none}
-.card-badge{position:absolute;top:10px;right:10px;background:var(--dark);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;z-index:2}
-.card-badge.gold{background:var(--gold)}
-.card-gallery{position:relative;width:100%;height:180px;overflow:hidden;background:#f0ede8;cursor:zoom-in}
-.gallery-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
-.gallery-img.active{opacity:1}
-.gallery-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
-.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background .2s;border:none;padding:0}
-.dot.active{background:#fff}
-.card-img{width:100%;height:180px;object-fit:cover;display:block;cursor:zoom-in}
-.card-body{padding:12px}
-.card-category{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;margin-bottom:4px;text-transform:uppercase}
-.card-category.gold{color:var(--gold)}
-.card-name{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px;line-height:1.3}
-.card-name-en{font-size:11px;color:var(--muted);margin-bottom:8px;font-family:'Syne',sans-serif}
-.colors-note{font-size:11px;color:var(--muted);margin-bottom:8px}
-.warning-note{font-size:11px;color:#e8491e;font-weight:700;margin-bottom:8px}
-.card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:0.5px solid var(--border)}
-.card-price{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--dark)}
-.card-price.gold{color:var(--gold)}
-.card-price sub{font-size:11px;font-weight:400;color:var(--muted);font-family:'Tajawal',sans-serif;vertical-align:middle}
-.color-selector{margin-bottom:8px}
-.color-selector-label{font-size:11px;color:var(--muted);font-weight:700;margin-bottom:5px;display:block}
-.color-options{display:flex;gap:5px;flex-wrap:wrap}
-.color-opt{border:1.5px solid var(--border);border-radius:6px;padding:3px 9px;font-size:11px;font-family:'Tajawal',sans-serif;cursor:pointer;transition:all .15s;background:var(--bg);color:var(--dark)}
-.color-opt.selected{border-color:var(--dark);background:var(--dark);color:#fff}
-.add-cart-btn{width:100%;background:var(--dark);color:#fff;border:none;padding:9px;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .2s}
-.add-cart-btn:hover{background:var(--gold)}
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;align-items:center;justify-content:center;padding:20px}
-.lightbox.open{display:flex}
-.lightbox img{max-width:100%;max-height:90vh;object-fit:contain;border-radius:8px}
-.lightbox-close{position:absolute;top:20px;left:20px;background:rgba(255,255,255,0.15);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.lb-prev{right:16px}.lb-next{left:16px}
-.cart-btn-float{position:fixed;bottom:20px;left:20px;background:var(--dark);color:#fff;border:none;border-radius:50px;padding:13px 20px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;cursor:pointer;z-index:999;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.25)}
-.cart-count{background:var(--gold);color:#fff;border-radius:50%;width:22px;height:22px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700}
-.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000}
-.cart-overlay.open{display:block}
-.cart-drawer{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-radius:20px 20px 0 0;padding:20px 16px 32px;z-index:1001;max-height:88vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s ease}
-.cart-drawer.open{transform:translateY(0)}
-.cart-drawer-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.cart-drawer-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800}
-.cart-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted)}
-.cart-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:.5px solid var(--border);gap:10px}
-.cart-item-name{font-size:13px;font-weight:700}
-.cart-item-color{font-size:11px;color:var(--muted);margin-top:2px}
-.cart-item-price{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--gold);flex-shrink:0}
-.cart-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:4px}
-.cart-empty{text-align:center;color:var(--muted);padding:28px 0;font-size:14px}
-.cart-label{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px;display:block}
-.cart-input,.cart-textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'Tajawal',sans-serif;font-size:14px;color:var(--dark);background:var(--bg);margin-bottom:10px;outline:none}
-.cart-textarea{min-height:65px;resize:vertical}
-.cart-summary{background:var(--bg);border-radius:10px;padding:12px;margin:12px 0}
-.cart-summary-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:var(--muted)}
-.cart-summary-row.total{font-size:15px;font-weight:700;color:var(--dark);border-top:.5px solid var(--border);padding-top:8px;margin-top:4px}
-.delivery-note{font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px}
-.wa-submit-btn{width:100%;background:#25D366;color:#fff;border:none;padding:15px;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-.cart-order-form{margin-top:16px}
-.success-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:2000;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
-.success-page.show{display:flex}
-.success-icon{width:72px;height:72px;background:#1D9E75;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:20px;color:#fff}
-.success-page h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:10px}
-.success-page p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px}
-.success-order-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;width:100%;max-width:340px;margin-bottom:24px;text-align:right}
-.success-order-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:.5px solid var(--border)}
-.success-order-row:last-child{border:none}
-.success-order-row.total-row{font-weight:700;font-size:14px;border-top:1px solid var(--border);padding-top:8px;margin-top:4px}
-.success-back-btn{background:var(--dark);color:#fff;border:none;padding:13px 28px;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
-footer{background:var(--dark);padding:24px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.footer-logo{height:36px;width:36px;border-radius:50%;object-fit:contain;background:#fff}
-.footer-copy{font-size:11px;color:rgba(255,255,255,0.3)}
-.social-link{width:34px;height:34px;border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);text-decoration:none;font-size:15px}
+:root{--dark:#0f1012;--bg:#f7f3ea;--surface:#fffaf1;--gold:#b9934d;--text:#1e1e1e;--muted:#7b7469;--border:#e6dccd;--radius:20px;--green:#25D366}
+*{box-sizing:border-box}body{margin:0;font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--text)}
+header{height:64px;background:var(--dark);padding:0 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000;box-shadow:0 8px 28px rgba(0,0,0,.16)}
+.header-logo{width:44px;height:44px;border-radius:12px;object-fit:cover}.header-tag{color:#fff;font-size:13px;font-weight:800;opacity:.9}.header-cta,.primary-btn{background:var(--gold);color:#fff;text-decoration:none;border:0;border-radius:999px;padding:10px 16px;font-weight:800;font-family:inherit;cursor:pointer}
+.hero{background:linear-gradient(135deg,#111,#252525);padding:42px 20px 36px;display:flex;align-items:center;gap:22px;color:#fff}.hero-logo{width:92px;height:92px;border-radius:26px;object-fit:cover;border:2px solid rgba(255,255,255,.12)}
+.hero-title{font-size:32px;font-weight:900;line-height:1.05}.hero-title em{font-size:16px;color:var(--gold);font-style:normal}.hero-sub{margin-top:10px;color:rgba(255,255,255,.72);font-weight:600}
+.info-strip{background:#fff;padding:12px 18px;display:flex;gap:10px;overflow-x:auto;border-bottom:1px solid var(--border)}.chip{white-space:nowrap;background:#f2eadc;border:1px solid var(--border);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:800;color:#4d463d}
+.filter-bar{position:sticky;top:64px;z-index:900;background:rgba(247,243,234,.94);backdrop-filter:blur(10px);padding:12px 16px;display:flex;gap:8px;overflow-x:auto;border-bottom:1px solid var(--border)}
+.filter-btn{border:1px solid var(--border);background:#fff;border-radius:999px;padding:9px 14px;font-family:inherit;font-weight:800;cursor:pointer;white-space:nowrap}.filter-btn.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 110px}.section-heading{display:flex;align-items:center;justify-content:space-between;margin:8px 0 18px}.section-heading h2{margin:0;font-size:24px}.section-count{font-size:13px;background:#efe5d3;padding:6px 10px;border-radius:999px;color:#7b602c;font-weight:900}
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}.product-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:0 10px 28px rgba(30,25,18,.055)}.product-card.hidden{display:none}.card-badge{position:absolute;top:12px;right:12px;z-index:2;background:rgba(15,16,18,.82);color:#fff;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900}.card-media{position:relative;background:#eee;height:240px;cursor:pointer}.gallery-img{width:100%;height:240px;object-fit:cover;object-position:center;display:none}.gallery-img.active{display:block}.gallery-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:6px}.dot{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.62);cursor:pointer}.dot.active{background:var(--gold);width:22px;border-radius:999px}.card-body{padding:15px}.card-category{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:.8px}.card-name{font-size:18px;font-weight:900;margin-top:5px}.card-name-en{font-size:12px;color:var(--muted);margin-top:2px}.colors-note{font-size:12px;color:var(--muted);margin:10px 0}.product-note{font-size:12px;background:#fff3d8;border:1px solid #edd3a3;color:#765725;border-radius:11px;padding:8px 10px;margin:10px 0;font-weight:800}.color-selector-label{display:block;font-size:12px;font-weight:900;margin-bottom:7px}.color-options{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}.color-opt{border:1px solid var(--border);background:#fff;border-radius:999px;padding:6px 9px;font-family:inherit;font-size:12px;font-weight:800;cursor:pointer}.color-opt.selected{background:var(--dark);color:#fff;border-color:var(--dark)}.card-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:12px}.card-price{font-size:22px;font-weight:900;color:var(--gold)}.card-price sub{font-size:12px}.add-cart-btn{margin-top:12px;width:100%;border:0;background:var(--dark);color:#fff;border-radius:12px;padding:12px;font-family:inherit;font-weight:900;cursor:pointer}.add-cart-btn.added{background:#1D9E75}.empty-state{text-align:center;color:var(--muted);padding:42px 10px;display:none}
+.cart-btn-float.pulse{animation:cartPulse .35s ease}.qty-control{display:inline-flex;align-items:center;gap:7px;margin-top:7px}.qty-btn{border:0;background:#f0ede8;border-radius:9px;width:28px;height:28px;cursor:pointer;font-weight:900}.qty-num{min-width:22px;text-align:center;font-weight:900}@keyframes cartPulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}.cart-btn-float{position:fixed;bottom:20px;left:20px;background:var(--dark);color:#fff;border:0;border-radius:999px;padding:14px 18px;font-family:inherit;font-weight:900;z-index:1200;box-shadow:0 8px 30px rgba(0,0,0,.25);cursor:pointer}.cart-count{background:var(--gold);display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:50%;margin-right:6px;font-size:12px}.cart-drawer{position:fixed;top:0;left:-430px;width:100%;max-width:410px;height:100%;background:#fff;z-index:1300;padding:20px;box-shadow:10px 0 35px rgba(0,0,0,.18);transition:.25s;overflow-y:auto}.cart-drawer.open{left:0}.cart-drawer-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.close-btn{border:0;background:#f0ede8;border-radius:12px;width:38px;height:38px;cursor:pointer;font-size:18px}.cart-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--border);padding:11px 0}.cart-item strong{display:block}.remove-btn{border:0;background:#fff2f2;color:#b00020;border-radius:10px;padding:6px 9px;cursor:pointer}.cart-summary{background:#f7f3ea;border-radius:16px;padding:12px;margin:14px 0}.summary-row{display:flex;justify-content:space-between;margin:6px 0;font-weight:800}.summary-row.total{border-top:1px solid var(--border);padding-top:8px;color:var(--gold);font-size:18px}.cart-label{font-size:12px;font-weight:900;margin:9px 0 5px;display:block}.cart-input{width:100%;border:1px solid var(--border);border-radius:12px;padding:12px;font-family:inherit;background:#fff}.wa-submit-btn{width:100%;margin-top:12px;background:var(--green);color:#fff;border:0;border-radius:13px;padding:14px;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer}.success-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:2000;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}.success-icon{width:72px;height:72px;border-radius:50%;background:#1D9E75;color:#fff;display:flex;align-items:center;justify-content:center;font-size:34px;margin-bottom:20px}.success-order{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px;text-align:right;max-width:420px;width:100%;white-space:pre-line;font-size:13px}.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:1900;align-items:center;justify-content:center;padding:20px}.lightbox img{max-width:94vw;max-height:84vh;border-radius:18px;object-fit:contain}.lightbox button{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer}.lightbox-close{top:18px;left:18px}.lb-prev{right:18px;top:50%}.lb-next{left:18px;top:50%}footer{background:var(--dark);color:rgba(255,255,255,.72);padding:24px 20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px}.social-link{color:#fff;text-decoration:none}.admin-note{margin-top:28px;background:#fff8e8;border:1px dashed var(--gold);border-radius:18px;padding:14px;color:#6d5629;font-size:13px;line-height:1.7}
+@media(max-width:560px){.hero-title{font-size:26px}.hero-logo{width:74px;height:74px}.catalog-grid{grid-template-columns:1fr 1fr;gap:12px}.card-media,.gallery-img{height:170px}.card-name{font-size:15px}.card-body{padding:12px}.cart-drawer{max-width:none}.header-tag{display:none}}
 </style>
 </head>
 <body>
 <header>
-  <img src="img_001.jpg" alt="MR3D.KW" class="header-logo"/>
-  <div class="header-tag">🇰🇼 كاتلوج المنتجات</div>
+  <img src="img_001.jpg" alt="MR.3D KW" class="header-logo" />
+  <div class="header-tag">🇰🇼 كاتلوج MR.3D KW</div>
   <a href="https://wa.me/96599667594" class="header-cta" target="_blank">واتساب 📲</a>
 </header>
-<div class="hero">
-  <img src="img_001.jpg" alt="MR3D.KW" class="hero-logo"/>
+<section class="hero">
+  <img src="img_001.jpg" alt="MR.3D KW" class="hero-logo" />
   <div>
-    <div class="hero-title">MR3D.KW<br><em>Made in Kuwait</em></div>
-    <div class="hero-sub">طباعة ثلاثية الأبعاد — من الفكرة إلى المنتج</div>
+    <div class="hero-title">MR.3D KW<br><em>Made in Kuwait</em></div>
+    <div class="hero-sub">طباعة ثلاثية الأبعاد — اختر المنتج واللون وأرسل الطلب واتساب</div>
   </div>
+</section>
+<div class="info-strip">
+  <span class="chip">🎨 ألوان متعددة</span><span class="chip">📦 طلب حسب التجهيز</span><span class="chip">🇰🇼 توصيل داخل الكويت</span><span class="chip">☕ إكسسوارات xbloom</span>
 </div>
-<div class="filter-bar">
-  <span style="font-size:11px;color:var(--muted);font-weight:700;flex-shrink:0;align-self:center;">تصفية:</span>
-  <button class="filter-btn active" onclick="filterCat('all',this)">الكل</button>
-  <button class="filter-btn xbloom-btn" onclick="filterCat('xbloom',this)">☕ xbloom</button>
-  <button class="filter-btn" onclick="filterCat('accessories',this)">اكسسوارات</button>
-</div>
-<main id="catalog">
-  <div class="section-wrap" id="xbloom-section">
-    <div class="section-heading">
-      <h2 class="gold">☕ xbloom</h2>
-      <span class="section-count gold">13 منتج</span>
-    </div>
-    <div class="catalog-grid">
-    
-    <div class="product-card" data-cat="xbloom">
-      <span class="card-badge  gold">xbloom</span>
-      <img class="card-img" src="img_074.jpg" alt="ستاند xbloom" onclick="openLightbox(['img_002.jpg',0], 0)" loading="lazy"/>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">ستاند xbloom</div>
-        <div class="card-name-en">xbloom Stand</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">25 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'ستاند xbloom', 25)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <img class="card-img" src="img_075.jpg" alt="كفر دقم xbloom" onclick="openLightbox(['img_003.jpg',0], 0)" loading="lazy"/>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">كفر دقم xbloom</div>
-        <div class="card-name-en">xbloom Knob Cover</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">3 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'كفر دقم xbloom', 3)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-ملاعق-494" onclick="openLightboxFromGallery('gallery-ملاعق-494')">
-        <img class="gallery-img  active" src="img_004.jpg" alt="ملاعق الحبة" loading="lazy"/>
-<img class="gallery-img" src="img_005.jpg" alt="ملاعق الحبة" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-ملاعق-494',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-ملاعق-494',1,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">ملاعق الحبة</div>
-        <div class="card-name-en">Coffee Bean Spoons</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">2 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'ملاعق الحبة', 2)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-جامعا-557" onclick="openLightboxFromGallery('gallery-جامعا-557')">
-        <img class="gallery-img  active" src="img_073.jpg" alt="جامع البن الدائري" loading="lazy"/>
-<img class="gallery-img" src="img_007.jpg" alt="جامع البن الدائري" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-جامعا-557',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-جامعا-557',1,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">جامع البن الدائري</div>
-        <div class="card-name-en">Coffee Puck</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">4 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'جامع البن الدائري', 4)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-جامعا-18" onclick="openLightboxFromGallery('gallery-جامعا-18')">
-        <img class="gallery-img  active" src="img_008.jpg" alt="جامع البن المربع" loading="lazy"/>
-<img class="gallery-img" src="img_009.jpg" alt="جامع البن المربع" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-جامعا-18',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-جامعا-18',1,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">جامع البن المربع</div>
-        <div class="card-name-en">Coffee Bean Box</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">4 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'جامع البن المربع', 4)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-مجسمك-555" onclick="openLightboxFromGallery('gallery-مجسمك-555')">
-        <img class="gallery-img  active" src="img_010.jpg" alt="مجسم كوب" loading="lazy"/>
-<img class="gallery-img" src="img_011.jpg" alt="مجسم كوب" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-مجسمك-555',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-مجسمك-555',1,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">مجسم كوب</div>
-        <div class="card-name-en">Cup Figurine</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">4 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'مجسم كوب', 4)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-مجسمب-385" onclick="openLightboxFromGallery('gallery-مجسمب-385')">
-        <img class="gallery-img  active" src="img_071.jpg" alt="مجسم بن قهوة" loading="lazy"/>
-<img class="gallery-img" src="img_013.jpg" alt="مجسم بن قهوة" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-مجسمب-385',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-مجسمب-385',1,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">مجسم بن قهوة</div>
-        <div class="card-name-en">Coffee Bean Figurine</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">4 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'مجسم بن قهوة', 4)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-مثبتف-585" onclick="openLightboxFromGallery('gallery-مثبتف-585')">
-        <img class="gallery-img  active" src="img_014.jpg" alt="مثبت فلاتر" loading="lazy"/>
-<img class="gallery-img" src="img_015.jpg" alt="مثبت فلاتر" loading="lazy"/>
-<img class="gallery-img" src="img_016.jpg" alt="مثبت فلاتر" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-مثبتف-585',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-مثبتف-585',1,this)"></button>
-<button class="dot" onclick="showImg('gallery-مثبتف-585',2,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">مثبت فلاتر</div>
-        <div class="card-name-en">Filter Holder</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        <div class="warning-note">⚠️ ليس للماء الحار</div>
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">4 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'مثبت فلاتر', 4)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-تخزين-145" onclick="openLightboxFromGallery('gallery-تخزين-145')">
-        <img class="gallery-img  active" src="img_017.jpg" alt="تخزين فلاتر" loading="lazy"/>
-<img class="gallery-img" src="img_018.jpg" alt="تخزين فلاتر" loading="lazy"/>
-<img class="gallery-img" src="img_019.jpg" alt="تخزين فلاتر" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-تخزين-145',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-تخزين-145',1,this)"></button>
-<button class="dot" onclick="showImg('gallery-تخزين-145',2,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">تخزين فلاتر</div>
-        <div class="card-name-en">Filter Storage</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">6 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'تخزين فلاتر', 6)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <img class="card-img" src="img_072.jpg" alt="شبك الميزان" onclick="openLightbox(['img_020.jpg',0], 0)" loading="lazy"/>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">شبك الميزان</div>
-        <div class="card-name-en">Scale Grid</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">4 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'شبك الميزان', 4)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-مجسمف-731" onclick="openLightboxFromGallery('gallery-مجسمف-731')">
-        <img class="gallery-img  active" src="img_070.jpg" alt="مجسم فلتر" loading="lazy"/>
-<img class="gallery-img" src="img_022.jpg" alt="مجسم فلتر" loading="lazy"/>
-<img class="gallery-img" src="img_023.jpg" alt="مجسم فلتر" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-مجسمف-731',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-مجسمف-731',1,this)"></button>
-<button class="dot" onclick="showImg('gallery-مجسمف-731',2,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">مجسم فلتر</div>
-        <div class="card-name-en">Filter Figurine</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">4 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'مجسم فلتر', 4)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <div class="card-gallery" id="gallery-منظمx-57" onclick="openLightboxFromGallery('gallery-منظمx-57')">
-        <img class="gallery-img  active" src="img_024.jpg" alt="منظم xbloom" loading="lazy"/>
-<img class="gallery-img" src="img_025.jpg" alt="منظم xbloom" loading="lazy"/>
-        <div class="gallery-dots"><button class="dot  active" onclick="showImg('gallery-منظمx-57',0,this)"></button>
-<button class="dot" onclick="showImg('gallery-منظمx-57',1,this)"></button></div>
-      </div>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">منظم xbloom</div>
-        <div class="card-name-en">xbloom Organizer</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">20 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'منظم xbloom', 20)">+ أضف للسلة</button>
-      </div>
-    </div>
-
-    <div class="product-card" data-cat="xbloom">
-      
-      <img class="card-img" src="img_026.jpg" alt="منظم xbloom مع كبسولات" onclick="openLightbox(['img_026.jpg',0], 0)" loading="lazy"/>
-      <div class="card-body">
-        <div class="card-category gold">XBLOOM</div>
-        <div class="card-name">منظم xbloom مع كبسولات</div>
-        <div class="card-name-en">xbloom Organizer + Capsules</div>
-        <div class="colors-note">متوفر بألوان عدة — اسأل عن الألوان</div>
-        
-        <div class="color-selector">
-        <span class="color-selector-label">اللون:</span>
-        <div class="color-options"></div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price gold">25 <sub>KD</sub></div>
-        </div>
-        <button class="add-cart-btn" onclick="handleAddToCart(this, 'منظم xbloom مع كبسولات', 25)">+ أضف للسلة</button>
-      </div>
-    </div>
-    </div>
-  </div>
-
-  <!-- ACCESSORIES -->
-  <div class="section-wrap" id="acc-section" style="display:none">
-    <div class="section-heading">
-      <h2>اكسسوارات</h2>
-      <span class="section-count" id="acc-count">1 منتج</span>
-    </div>
-    <div class="catalog-grid" id="acc-grid">
-      
-    </div>
-  </div>
-
+<div class="filter-bar" id="filter-bar"></div>
+<main>
+  <div class="section-heading"><h2 id="section-title">كل المنتجات</h2><span class="section-count" id="section-count">0 منتج</span></div>
+  <div class="catalog-grid" id="catalog"></div>
+  <div class="empty-state" id="empty-state">لا توجد منتجات في هذا القسم حالياً</div>
+  <div class="admin-note">ملاحظة لصاحب الموقع: لإضافة منتج جديد لاحقاً، أرسل لي اسم المنتج + السعر + الصور، وأرتب لك الملف جاهز للرفع على GitHub.</div>
 </main>
-
-<!-- FOOTER -->
-<footer>
-  <img src="img_001.jpg" alt="MR3D.KW" class="footer-logo" onerror="this.style.display='none'"/>
-  <div class="footer-copy">© MR3D.KW — الكويت</div>
-  <a class="social-link" href="https://wa.me/96599667594" target="_blank">💬</a>
-</footer>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <button class="lb-nav lb-prev" onclick="lbNav(1);event.stopPropagation()">‹</button>
-  <img id="lightbox-img" src="" alt=""/>
-  <button class="lb-nav lb-next" onclick="lbNav(-1);event.stopPropagation()">›</button>
-</div>
-
-<!-- CART -->
-<button class="cart-btn-float" onclick="openCart()">
-  🛒 السلة <span class="cart-count" id="cart-count">0</span>
-</button>
-<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
-<div class="cart-drawer" id="cart-drawer">
-  <div class="cart-drawer-header">
-    <div class="cart-drawer-title">سلة الطلب</div>
-    <button class="cart-close" onclick="closeCart()">✕</button>
-  </div>
+<button class="cart-btn-float" onclick="toggleCart()">السلة <span class="cart-count" id="cart-count">0</span></button>
+<aside class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header"><h2>سلة الطلب</h2><button class="close-btn" onclick="toggleCart()">×</button></div>
   <div id="cart-items-list"></div>
-  <div class="cart-order-form" id="cart-form" style="display:none">
-    <div class="cart-summary" id="cart-summary"></div>
-    <label class="cart-label">الاسم</label>
-    <input class="cart-input" id="c-name" type="text" placeholder="اسمك الكريم"/>
-    <label class="cart-label">رقم الواتساب</label>
-    <input class="cart-input" id="c-phone" type="tel" placeholder="+965 XXXX XXXX"/>
-    <label class="cart-label">العنوان (المنطقة / القطعة / الشارع / المنزل)</label>
-    <textarea class="cart-textarea" id="c-address" placeholder="مثال: حولي، قطعة 5، شارع 10، منزل 20"></textarea>
-    <label class="cart-label">ملاحظات</label>
-    <textarea class="cart-textarea" id="c-notes" placeholder="أي تفاصيل إضافية..."></textarea>
-    <p class="delivery-note">🚚 التوصيل 2 KD — خلال 2-3 أيام عمل</p>
+  <div class="cart-summary" id="cart-summary"></div>
+  <div id="cart-form">
+    <label class="cart-label">الاسم</label><input class="cart-input" id="c-name" placeholder="مثال: عبدالله" />
+    <label class="cart-label">رقم الواتساب</label><input class="cart-input" id="c-phone" placeholder="مثال: 99123456" />
+    <label class="cart-label">العنوان</label><textarea class="cart-input" id="c-address" rows="3" placeholder="المنطقة، القطعة، الشارع، المنزل"></textarea>
+    <label class="cart-label">ملاحظات اختيارية</label><textarea class="cart-input" id="c-notes" rows="2" placeholder="أي ملاحظة على الطلب"></textarea>
     <button class="wa-submit-btn" onclick="sendOrder()">إرسال الطلب واتساب 📲</button>
   </div>
-</div>
-
-<!-- SUCCESS -->
-<div class="success-page" id="success-page">
-  <div class="success-icon">✓</div>
-  <h2>تم الطلب بنجاح!</h2>
-  <p>سوف يتم التواصل معاكم واتساب</p>
-  <div class="success-order-box" id="success-order-box"></div>
-  <button class="success-back-btn" onclick="document.getElementById('success-page').classList.remove('show')">العودة للكاتلوج</button>
-</div>
-
+</aside>
+<div class="success-page" id="success-page"><div class="success-icon">✓</div><h2>تم تجهيز الطلب</h2><p>سوف يتم تحويلك للواتساب لإرسال تفاصيل الطلب</p><div class="success-order" id="success-order-box"></div><br><button class="primary-btn" onclick="location.reload()">طلب جديد</button></div>
+<div class="lightbox" id="lightbox"><button class="lightbox-close" onclick="closeLightbox()">×</button><button class="lb-prev" onclick="moveLightbox(-1)">›</button><img id="lightbox-img" src="" alt=""><button class="lb-next" onclick="moveLightbox(1)">‹</button></div>
+<footer><div>MR.3D KW © 2026</div><a class="social-link" href="https://wa.me/96599667594" target="_blank">تواصل واتساب</a></footer>
 <script>
-emailjs.init("blaXHYDZF4VZwtF8H");
-
-const COLORS = ['بيج','أبيض','أسود','نيفي بلو','سيج جرين','أخضر','وردي','سماوي','تيفاني','ماربل'];
+/*
+==================== منطقة التعديل السهلة ====================
+لتغيير رقم الواتساب: عدل WHATSAPP_NUMBER
+لإضافة منتج: انسخ أي منتج من PRODUCTS وغيّر الاسم والسعر والصور
+الصور لازم تكون مرفوعة بنفس ملفات الموقع، مثال: img_076.jpg
+===============================================================
+*/
+const WHATSAPP_NUMBER = '96599667594';
 const DELIVERY = 2;
-let cart = [];
-let lbImgs = [], lbIdx = 0;
-
-// Inject color options
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.color-options').forEach(opts => {
-    opts.innerHTML = COLORS.map(c => `<span class="color-opt" onclick="selectColor(this)">${c}</span>`).join('');
-  });
-});
-
-function selectColor(el) {
-  el.closest('.color-options').querySelectorAll('.color-opt').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-}
-
-function handleAddToCart(btn, name, price) {
-  const card = btn.closest('.product-card');
-  const selected = card.querySelector('.color-opt.selected');
-  if (!selected) { alert('اختر اللون أولاً'); return; }
-  cart.push({ name, price, color: selected.textContent, id: Date.now() });
-  updateCartCount();
-  selected.classList.remove('selected');
-  const orig = btn.textContent;
-  btn.textContent = '✓ تمت الإضافة';
-  btn.style.background = '#1D9E75';
-  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1200);
-}
-
-function updateCartCount() {
-  document.getElementById('cart-count').textContent = cart.length;
-}
-
-function openCart() {
-  document.getElementById('cart-overlay').classList.add('open');
-  document.getElementById('cart-drawer').classList.add('open');
-  renderCart();
-}
-
-function closeCart() {
-  document.getElementById('cart-overlay').classList.remove('open');
-  document.getElementById('cart-drawer').classList.remove('open');
-}
-
-function removeFromCart(id) {
-  cart = cart.filter(i => i.id !== id);
-  updateCartCount();
-  renderCart();
-}
-
-function renderCart() {
-  const list = document.getElementById('cart-items-list');
-  const form = document.getElementById('cart-form');
-  const summary = document.getElementById('cart-summary');
-  if (cart.length === 0) { list.innerHTML = '<div class="cart-empty">السلة فاضية 🛒</div>'; form.style.display = 'none'; return; }
-  list.innerHTML = cart.map(item => `
-    <div class="cart-item">
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-color">اللون: ${item.color}</div>
-      </div>
-      <div class="cart-item-price">${item.price} KD</div>
-      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button>
-    </div>`).join('');
-  const subtotal = cart.reduce((s,i) => s+i.price, 0);
-  const total = subtotal + DELIVERY;
-  summary.innerHTML = `
-    <div class="cart-summary-row"><span>المنتجات</span><span>${subtotal.toFixed(1)} KD</span></div>
-    <div class="cart-summary-row"><span>التوصيل</span><span>${DELIVERY} KD</span></div>
-    <div class="cart-summary-row total"><span>الإجمالي</span><span>${total.toFixed(1)} KD</span></div>`;
-  form.style.display = 'block';
-}
-
-function sendOrder() {
-  const name = document.getElementById('c-name').value.trim();
-  const phone = document.getElementById('c-phone').value.trim();
-  const address = document.getElementById('c-address').value.trim();
-  const notes = document.getElementById('c-notes').value.trim();
-  if (!name || !phone || !address) { alert('يرجى تعبئة الاسم ورقم الواتساب والعنوان'); return; }
-  const subtotal = cart.reduce((s,i) => s+i.price, 0);
-  const total = subtotal + DELIVERY;
-  const orderLines = cart.map((item,i) => (i+1)+'. '+item.name+' - اللون: '+item.color+' - '+item.price+' KD').join('\n');
-  emailjs.send("service_ews8cvy","template_tm0w7ug",{name,phone,address,order:orderLines,subtotal:subtotal.toFixed(1),total:total.toFixed(1),notes:notes||'لا يوجد'});
-  const lines = ['طلب جديد - MR3D.KW','-------------------','الاسم: '+name,'الواتساب: '+phone,'العنوان: '+address,'','المنتجات:'];
-  cart.forEach((item,i) => lines.push((i+1)+'. '+item.name+' - اللون: '+item.color+' - '+item.price+' KD'));
-  lines.push('','المجموع: '+subtotal.toFixed(1)+' KD','التوصيل: '+DELIVERY+' KD','الاجمالي: '+total.toFixed(1)+' KD');
-  if (notes) lines.push('','ملاحظات: '+notes);
-  const box = document.getElementById('success-order-box');
-  box.innerHTML = cart.map(item=>`<div class="success-order-row"><span>${item.name} - ${item.color}</span><span>${item.price} KD</span></div>`).join('')
-    +`<div class="success-order-row"><span>التوصيل</span><span>${DELIVERY} KD</span></div>`
-    +`<div class="success-order-row total-row"><span>الإجمالي</span><span>${total.toFixed(1)} KD</span></div>`;
-  cart = []; updateCartCount(); closeCart();
-  document.getElementById('success-page').classList.add('show');
-  setTimeout(() => { window.location.href = 'whatsapp://send?phone=96599667594&text=' + encodeURIComponent(lines.join('\n')); }, 600);
-}
-
-// GALLERY
-function showImg(galleryId, idx, dotEl) {
-  const g = document.getElementById(galleryId);
-  if (!g) return;
-  g.querySelectorAll('.gallery-img').forEach((img,i) => img.classList.toggle('active', i===idx));
-  g.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===idx));
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.card-gallery').forEach(g => {
-    let sx = 0;
-    g.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
-    g.addEventListener('touchend', e => {
-      const diff = sx - e.changedTouches[0].clientX;
-      if (Math.abs(diff) < 30) return;
-      const imgs = g.querySelectorAll('.gallery-img');
-      const dots = g.querySelectorAll('.dot');
-      let cur = 0;
-      imgs.forEach((img,i) => { if(img.classList.contains('active')) cur=i; });
-      const next = diff > 0 ? Math.min(cur+1,imgs.length-1) : Math.max(cur-1,0);
-      imgs.forEach((img,i) => img.classList.toggle('active', i===next));
-      dots.forEach((d,i) => d.classList.toggle('active', i===next));
-    }, {passive:true});
-  });
-});
-
-// LIGHTBOX
-function openLightbox(imgs, idx) {
-  lbImgs = imgs; lbIdx = idx;
-  document.getElementById('lightbox-img').src = imgs[idx];
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function openLightboxFromGallery(galleryId) {
-  const g = document.getElementById(galleryId);
-  if (!g) return;
-  const imgs = [...g.querySelectorAll('.gallery-img')].map(i => i.src);
-  let cur = 0;
-  g.querySelectorAll('.gallery-img').forEach((img,i) => { if(img.classList.contains('active')) cur=i; });
-  openLightbox(imgs, cur);
-}
-
-function closeLightbox(e) {
-  if (e && e.target !== document.getElementById('lightbox') && e.target !== document.querySelector('.lightbox-close')) return;
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function lbNav(dir) {
-  lbIdx = (lbIdx - dir + lbImgs.length) % lbImgs.length;
-  document.getElementById('lightbox-img').src = lbImgs[lbIdx];
-}
-
-// FILTER
-function filterCat(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.product-card').forEach(c => {
-    c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
-  });
-  document.getElementById('xbloom-section').style.display = (cat === 'all' || cat === 'xbloom') ? '' : 'none';
-  const accSection = document.getElementById('acc-section');
-  if (accSection) accSection.style.display = (cat === 'all' || cat === 'accessories') ? '' : 'none';
-}
-</script>
-</body>
-</html>
-    </div>
-  </div>
-</main>
-<footer>
-  <img src="img_001.jpg" alt="MR3D.KW" class="footer-logo"/>
-  <div class="footer-copy">© MR3D.KW — الكويت</div>
-  <a class="social-link" href="https://wa.me/96599667594" target="_blank">💬</a>
-</footer>
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open');document.body.style.overflow=''">✕</button>
-  <button class="lb-nav lb-prev" onclick="lbNav(1);event.stopPropagation()">‹</button>
-  <img id="lightbox-img" src="" alt=""/>
-  <button class="lb-nav lb-next" onclick="lbNav(-1);event.stopPropagation()">›</button>
-</div>
-<button class="cart-btn-float" onclick="openCart()">🛒 السلة <span class="cart-count" id="cart-count">0</span></button>
-<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
-<div class="cart-drawer" id="cart-drawer">
-  <div class="cart-drawer-header">
-    <div class="cart-drawer-title">سلة الطلب</div>
-    <button class="cart-close" onclick="closeCart()">✕</button>
-  </div>
-  <div id="cart-items-list"></div>
-  <div class="cart-order-form" id="cart-form" style="display:none">
-    <div class="cart-summary" id="cart-summary"></div>
-    <label class="cart-label">الاسم</label>
-    <input class="cart-input" id="c-name" type="text" placeholder="اسمك الكريم"/>
-    <label class="cart-label">رقم الواتساب</label>
-    <input class="cart-input" id="c-phone" type="tel" placeholder="+965 XXXX XXXX"/>
-    <label class="cart-label">العنوان</label>
-    <textarea class="cart-textarea" id="c-address" placeholder="المنطقة / القطعة / الشارع / المنزل"></textarea>
-    <label class="cart-label">ملاحظات</label>
-    <textarea class="cart-textarea" id="c-notes" placeholder="أي تفاصيل إضافية..."></textarea>
-    <p class="delivery-note">🚚 التوصيل 2 KD — خلال 2-3 أيام عمل</p>
-    <button class="wa-submit-btn" onclick="sendOrder()">إرسال الطلب واتساب 📲</button>
-  </div>
-</div>
-<div class="success-page" id="success-page">
-  <div class="success-icon">✓</div>
-  <h2>تم الطلب بنجاح!</h2>
-  <p>سوف يتم التواصل معاكم واتساب</p>
-  <div class="success-order-box" id="success-order-box"></div>
-  <button class="success-back-btn" onclick="document.getElementById('success-page').classList.remove('show')">العودة للكاتلوج</button>
-</div>
-<script>
-emailjs.init("blaXHYDZF4VZwtF8H");
-const COLORS=['بيج','أبيض','أسود','نيفي بلو','سيج جرين','أخضر','وردي','سماوي','تيفاني','ماربل'];
-const DELIVERY=2;let cart=[];let lbImgs=[],lbIdx=0;
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.color-options').forEach(opts=>{
-    opts.innerHTML=COLORS.map(c=>`<span class="color-opt" onclick="selectColor(this)">${c}</span>`).join('');
-  });
-  document.querySelectorAll('.card-gallery').forEach(g=>{
-    let sx=0;
-    g.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
-    g.addEventListener('touchend',e=>{
-      const diff=sx-e.changedTouches[0].clientX;
-      if(Math.abs(diff)<30)return;
-      const imgs=g.querySelectorAll('.gallery-img');
-      const dots=g.querySelectorAll('.dot');
-      let cur=0;imgs.forEach((img,i)=>{if(img.classList.contains('active'))cur=i;});
-      const next=diff>0?Math.min(cur+1,imgs.length-1):Math.max(cur-1,0);
-      imgs.forEach((img,i)=>img.classList.toggle('active',i===next));
-      dots.forEach((d,i)=>d.classList.toggle('active',i===next));
-    },{passive:true});
-  });
-});
-function selectColor(el){el.closest('.color-options').querySelectorAll('.color-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');}
-function handleAddToCart(btn,name,price){
-  const card=btn.closest('.product-card');
-  const sel=card.querySelector('.color-opt.selected');
-  if(!sel){alert('اختر اللون أولاً');return;}
-  cart.push({name,price,color:sel.textContent,id:Date.now()});
-  updateCartCount();sel.classList.remove('selected');
-  const orig=btn.textContent;btn.textContent='✓ تمت الإضافة';btn.style.background='#1D9E75';
-  setTimeout(()=>{btn.textContent=orig;btn.style.background='';},1200);
-}
-function updateCartCount(){document.getElementById('cart-count').textContent=cart.length;}
-function openCart(){document.getElementById('cart-overlay').classList.add('open');document.getElementById('cart-drawer').classList.add('open');renderCart();}
-function closeCart(){document.getElementById('cart-overlay').classList.remove('open');document.getElementById('cart-drawer').classList.remove('open');}
-function removeFromCart(id){cart=cart.filter(i=>i.id!==id);updateCartCount();renderCart();}
-function renderCart(){
-  const list=document.getElementById('cart-items-list');
-  const form=document.getElementById('cart-form');
-  const summary=document.getElementById('cart-summary');
-  if(cart.length===0){list.innerHTML='<div class="cart-empty">السلة فاضية 🛒</div>';form.style.display='none';return;}
-  list.innerHTML=cart.map(item=>`<div class="cart-item"><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-color">اللون: ${item.color}</div></div><div class="cart-item-price">${item.price} KD</div><button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button></div>`).join('');
-  const subtotal=cart.reduce((s,i)=>s+i.price,0);const total=subtotal+DELIVERY;
-  summary.innerHTML=`<div class="cart-summary-row"><span>المنتجات</span><span>${subtotal.toFixed(1)} KD</span></div><div class="cart-summary-row"><span>التوصيل</span><span>${DELIVERY} KD</span></div><div class="cart-summary-row total"><span>الإجمالي</span><span>${total.toFixed(1)} KD</span></div>`;
-  form.style.display='block';
-}
-function sendOrder(){
-  const name=document.getElementById('c-name').value.trim();
-  const phone=document.getElementById('c-phone').value.trim();
-  const address=document.getElementById('c-address').value.trim();
-  const notes=document.getElementById('c-notes').value.trim();
-  if(!name||!phone||!address){alert('يرجى تعبئة الاسم ورقم الواتساب والعنوان');return;}
-  const subtotal=cart.reduce((s,i)=>s+i.price,0);const total=subtotal+DELIVERY;
-  const orderLines=cart.map((item,i)=>(i+1)+'. '+item.name+' - اللون: '+item.color+' - '+item.price+' KD').join('\n');
-  emailjs.send("service_ews8cvy","template_tm0w7ug",{name,phone,address,order:orderLines,subtotal:subtotal.toFixed(1),total:total.toFixed(1),notes:notes||'لا يوجد'});
-  const lines=['طلب جديد - MR3D.KW','-------------------','الاسم: '+name,'الواتساب: '+phone,'العنوان: '+address,'','المنتجات:'];
-  cart.forEach((item,i)=>lines.push((i+1)+'. '+item.name+' - اللون: '+item.color+' - '+item.price+' KD'));
-  lines.push('','المجموع: '+subtotal.toFixed(1)+' KD','التوصيل: '+DELIVERY+' KD','الاجمالي: '+total.toFixed(1)+' KD');
-  if(notes)lines.push('','ملاحظات: '+notes);
-  const box=document.getElementById('success-order-box');
-  box.innerHTML=cart.map(item=>`<div class="success-order-row"><span>${item.name} - ${item.color}</span><span>${item.price} KD</span></div>`).join('')+`<div class="success-order-row"><span>التوصيل</span><span>${DELIVERY} KD</span></div><div class="success-order-row total-row"><span>الإجمالي</span><span>${total.toFixed(1)} KD</span></div>`;
-  cart=[];updateCartCount();closeCart();
-  document.getElementById('success-page').classList.add('show');
-  setTimeout(()=>{window.location.href='whatsapp://send?phone=96599667594&text='+encodeURIComponent(lines.join('\n'));},600);
-}
-function showImg(galleryId,idx,dotEl){
-  const g=document.getElementById(galleryId);if(!g)return;
-  g.querySelectorAll('.gallery-img').forEach((img,i)=>img.classList.toggle('active',i===idx));
-  g.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-}
-function openLightbox(imgs,idx){lbImgs=imgs;lbIdx=idx;document.getElementById('lightbox-img').src=imgs[idx];document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
-function openLightboxFromGallery(galleryId){
-  const g=document.getElementById(galleryId);if(!g)return;
-  const imgs=[...g.querySelectorAll('.gallery-img')].map(i=>i.src);
-  let cur=0;g.querySelectorAll('.gallery-img').forEach((img,i)=>{if(img.classList.contains('active'))cur=i;});
-  openLightbox(imgs,cur);
-}
-function closeLightbox(e){
-  if(e&&e.target.id!=='lightbox')return;
-  document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';
-}
-function lbNav(dir){lbIdx=(lbIdx-dir+lbImgs.length)%lbImgs.length;document.getElementById('lightbox-img').src=lbImgs[lbIdx];}
-function filterCat(cat,btn){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-  document.querySelectorAll('.product-card').forEach(c=>{c.classList.toggle('hidden',cat!=='all'&&c.dataset.cat!==cat);});
-}
+const COLORS = ['بيج','أبيض','أسود','نيفي بلو','سيج جرين','أخضر','وردي','سماوي','تيفاني','ماربل'];
+const CATEGORIES = {all:'الكل', xbloom:'☕ xBloom', accessories:'اكسسوارات', occasions:'مناسبات'};
+const PRODUCTS = [
+  {cat:'xbloom', name:'xBloom Tower', en:'xBloom Tower', price:25, images:['img_074.jpg','img_002.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'xBloom Tower V Shape with Button', en:'V Shape Organizer Unit', price:28, images:['xbloom_tower_v_button_01.jpeg'], badge:'xBloom'},
+  {cat:'xbloom', name:'واجهة xBloom', en:'xBloom Front Cover', price:8, images:['xbloom_front_01.jpeg','xbloom_front_02.jpeg'], badge:'xBloom'},
+  {cat:'xbloom', name:'كفر دقم xBloom', en:'xBloom Knob Cover', price:3, images:['img_075.jpg','img_003.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'ملاعق الحبة', en:'Coffee Bean Spoons', price:2, images:['img_004.jpg','img_005.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'جامع البن الدائري', en:'Round Coffee Collector', price:4, images:['round_collector_01.jpeg','img_073.jpg','img_007.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'جامع البن المربع', en:'Coffee Bean Box', price:4, images:['img_008.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'مجسم كوب', en:'Cup Figurine', price:4, images:['img_010.jpg','img_011.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'مجسم بن القهوة', en:'Coffee Bean Figurine', price:4, images:['img_071.jpg','coffee_bean_fig_02.jpeg'], badge:'xBloom'},
+  {cat:'xbloom', name:'مثبت فلاتر', en:'Filter Holder', price:4, images:['img_014.jpg','img_015.jpg','img_016.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'تخزين فلاتر', en:'Filter Storage', price:6, images:['img_017.jpg','img_018.jpg','img_019.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'شبك الميزان', en:'Scale Grid', price:4, images:['img_072.jpg','img_020.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'مجسم فلتر', en:'Filter Figurine', price:4, images:['img_070.jpg','img_022.jpg','img_023.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'منظم xBloom', en:'xBloom Organizer', price:20, images:['xbloom_organizer_extra.jpeg','xbloom_organizer_fixed_01.jpeg','xbloom_organizer_fixed_02.jpeg'], badge:'xBloom'},
+  {cat:'xbloom', name:'منظم xBloom مع كبسولات', en:'xBloom Organizer + Capsules', price:25, images:['img_026.jpg'], badge:'xBloom'},
+  {cat:'accessories', name:'ستاند Dyson', en:'Dyson Stand', price:15, images:['dyson_stand_01.jpeg','dyson_stand_05.jpeg','dyson_stand_02.jpeg','dyson_stand_03.jpeg','dyson_stand_04.jpeg'], badge:'اكسسوارات'},
+  {cat:'occasions', name:'تقديم عيدية عيد الأضحى', en:'Eid Al-Adha Gift Holder', price:0.25, priceLabel:'0.250', minQty:20, noColor:true, note:'أقل طلب 20 حبة — السعر للحبة', images:['eid_ad_01.jpeg','eid_sheep_02.jpeg','eid_sheep_03.jpeg','eid_sheep_04.jpeg','eid_sheep_05.jpeg','eid_sheep_06.jpeg'], badge:'مناسبات'}
+];
+let cart=[];let currentCat='all';let lbImgs=[];let lbIdx=0;
+function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function renderFilters(){const bar=document.getElementById('filter-bar');bar.innerHTML=Object.entries(CATEGORIES).map(([key,label])=>`<button class="filter-btn ${key==='all'?'active':''}" onclick="filterCat('${key}',this)">${label}</button>`).join('');}
+function renderProducts(){const catProducts=PRODUCTS.filter(p=>currentCat==='all'||p.cat===currentCat);document.getElementById('section-title').textContent=currentCat==='all'?'كل المنتجات':CATEGORIES[currentCat];document.getElementById('section-count').textContent=catProducts.length+' منتج';document.getElementById('empty-state').style.display=catProducts.length?'none':'block';document.getElementById('catalog').innerHTML=catProducts.map((p,idx)=>productCard(p,idx)).join('');}
+function productCard(p,idx){const id='g'+idx+'_'+Math.random().toString(36).slice(2,7);const imgs=(p.images&&p.images.length?p.images:['img_001.jpg']);const priceText=p.priceLabel||p.price;const colorHtml=p.noColor?'':`<div class="colors-note">متوفر بألوان عدة — اختر اللون</div><div class="color-selector"><span class="color-selector-label">اللون:</span><div class="color-options">${COLORS.map((c,i)=>`<button class="color-opt ${i===0?'selected':''}" onclick="selectColor(this)">${escapeHtml(c)}</button>`).join('')}</div></div>`;const noteHtml=p.note?`<div class="product-note">${escapeHtml(p.note)}</div>`:'';return `<div class="product-card" data-cat="${escapeHtml(p.cat)}"><span class="card-badge">${escapeHtml(p.badge||CATEGORIES[p.cat]||'منتج')}</span><div class="card-media" id="${id}" onclick="openLightbox(${idx})">${imgs.map((src,i)=>`<img class="gallery-img ${i===0?'active':''}" src="${escapeHtml(src)}" alt="${escapeHtml(p.name)}" loading="lazy">`).join('')} ${imgs.length>1?`<div class="gallery-dots">${imgs.map((_,i)=>`<button class="dot ${i===0?'active':''}" onclick="event.stopPropagation();showImg('${id}',${i},this)"></button>`).join('')}</div>`:''}</div><div class="card-body"><div class="card-category">${escapeHtml(CATEGORIES[p.cat]||p.cat)}</div><div class="card-name">${escapeHtml(p.name)}</div><div class="card-name-en">${escapeHtml(p.en||'')}</div>${noteHtml}${colorHtml}<div class="card-footer"><div class="card-price">${priceText} <sub>KD</sub></div></div><button class="add-cart-btn" onclick="handleAddToCart(this, ${idx})">+ أضف للسلة</button></div></div>`}
+function filterCat(cat,btn){currentCat=cat;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderProducts();}
+function showImg(galleryId,index,btn){const g=document.getElementById(galleryId);g.querySelectorAll('.gallery-img').forEach((img,i)=>img.classList.toggle('active',i===index));g.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===index));}
+function selectColor(btn){btn.closest('.color-options').querySelectorAll('.color-opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
+function saveCart(){localStorage.setItem('mr3dkw_cart', JSON.stringify(cart));}
+function loadCart(){try{cart=JSON.parse(localStorage.getItem('mr3dkw_cart'))||[]}catch(e){cart=[]}}
+function cartQty(){return cart.reduce((sum,item)=>sum+(item.qty||1),0)}
+function cartSubtotal(){return cart.reduce((sum,item)=>sum+(Number(item.price)||0)*(item.qty||1),0)}
+function pulseCart(){const b=document.querySelector('.cart-btn-float');if(!b)return;b.classList.remove('pulse');void b.offsetWidth;b.classList.add('pulse');setTimeout(()=>b.classList.remove('pulse'),380)}
+function handleAddToCart(btn,idx){const visible=PRODUCTS.filter(p=>currentCat==='all'||p.cat===currentCat);const p=visible[idx];if(!p)return;const color=p.noColor?'حسب الصورة':btn.closest('.product-card').querySelector('.color-opt.selected').textContent.trim();const minQty=p.minQty||1;const existing=cart.find(item=>item.name===p.name && item.color===color);if(existing){existing.qty=(existing.qty||minQty)+1}else{cart.push({name:p.name,price:Number(p.price)||0,priceLabel:p.priceLabel||String(p.price),color,qty:minQty,minQty})}saveCart();updateCart();pulseCart();document.getElementById('cart-drawer').classList.add('open');btn.textContent='✓ تمت الإضافة للسلة';btn.classList.add('added');setTimeout(()=>{btn.textContent='+ أضف للسلة';btn.classList.remove('added')},900);}
+function toggleCart(){document.getElementById('cart-drawer').classList.toggle('open');updateCart();}
+function updateCart(){document.getElementById('cart-count').textContent=cartQty();const list=document.getElementById('cart-items-list');const summary=document.getElementById('cart-summary');if(!cart.length){list.innerHTML='<p style="color:var(--muted);text-align:center">السلة فارغة</p>';summary.innerHTML='';saveCart();return;}list.innerHTML=cart.map((i,n)=>`<div class="cart-item"><div><strong>${escapeHtml(i.name)}</strong><small>اللون: ${escapeHtml(i.color)} — ${escapeHtml(i.priceLabel||i.price)} KD للقطعة${i.minQty&&i.minQty>1?' — أقل طلب '+i.minQty:''}</small><div class="qty-control"><button class="qty-btn" onclick="changeQty(${n},-1)">−</button><span class="qty-num">${i.qty||1}</span><button class="qty-btn" onclick="changeQty(${n},1)">+</button></div></div><button class="remove-btn" onclick="removeItem(${n})">حذف</button></div>`).join('');const subtotal=cartSubtotal(),total=subtotal+DELIVERY;summary.innerHTML=`<div class="summary-row"><span>المجموع</span><span>${subtotal.toFixed(3).replace(/\.?0+$/,'')} KD</span></div><div class="summary-row"><span>التوصيل</span><span>${DELIVERY} KD</span></div><div class="summary-row total"><span>الإجمالي</span><span>${total.toFixed(3).replace(/\.?0+$/,'')} KD</span></div>`;saveCart();}
+function changeQty(i,delta){if(!cart[i])return;const minQty=cart[i].minQty||1;const newQty=(cart[i].qty||minQty)+delta;if(newQty<minQty){cart.splice(i,1)}else{cart[i].qty=newQty}updateCart();}
+function removeItem(i){cart.splice(i,1);updateCart();}
+function sendOrder(){if(!cart.length){alert('السلة فارغة');return;}const name=document.getElementById('c-name').value.trim(),phone=document.getElementById('c-phone').value.trim(),address=document.getElementById('c-address').value.trim(),notes=document.getElementById('c-notes').value.trim();if(!name||!phone||!address){alert('يرجى تعبئة الاسم ورقم الواتساب والعنوان');return;}const subtotal=cartSubtotal(),total=subtotal+DELIVERY;const fmt=n=>Number(n).toFixed(3).replace(/\.?0+$/,'');const orderLines=cart.map((item,i)=>`${i+1}. ${item.name} - اللون: ${item.color} - الكمية: ${item.qty||1} - ${item.priceLabel||item.price} KD${item.minQty&&item.minQty>1?' - أقل طلب '+item.minQty:''}`).join('\n');const lines=['طلب جديد - MR.3D KW','-------------------','الاسم: '+name,'الواتساب: '+phone,'العنوان: '+address,'','المنتجات:',orderLines,'','المجموع: '+fmt(subtotal)+' KD','التوصيل: '+DELIVERY+' KD','الإجمالي: '+fmt(total)+' KD'];if(notes)lines.push('','ملاحظات: '+notes);document.getElementById('success-order-box').textContent=lines.join('\n');document.getElementById('success-page').style.display='flex';localStorage.removeItem('mr3dkw_cart');setTimeout(()=>{window.location.href='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(lines.join('\n'));},650);}
+function openLightbox(renderedIdx){const visible=PRODUCTS.filter(p=>currentCat==='all'||p.cat===currentCat);lbImgs=visible[renderedIdx].images||['img_001.jpg'];lbIdx=0;document.getElementById('lightbox-img').src=lbImgs[lbIdx];document.getElementById('lightbox').style.display='flex';}
+function closeLightbox(){document.getElementById('lightbox').style.display='none'}
+function moveLightbox(dir){if(!lbImgs.length)return;lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length;document.getElementById('lightbox-img').src=lbImgs[lbIdx];}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});loadCart();renderFilters();renderProducts();updateCart();
 </script>
 </body>
 </html>
