@@ -74,6 +74,7 @@ const DELIVERY = 2;
 const COLORS = ['بيج','أبيض','أسود','نيفي بلو','سيج جرين','أخضر','وردي','سماوي','تيفاني','ماربل'];
 const CATEGORIES = {all:'الكل', xbloom:'☕ xBloom', accessories:'اكسسوارات', occasions:'مناسبات'};
 const PRODUCTS = [
+  {cat:'xbloom', name:'xBloom Tower & Stand', en:'xBloom Tower & Stand', price:25, images:['xbloom_tower_stand_01.jpg'], badge:'xBloom'},
   {cat:'xbloom', name:'xBloom Tower', en:'xBloom Tower', price:25, images:['img_074.jpg','img_002.jpg'], badge:'xBloom'},
   {cat:'xbloom', name:'xBloom Tower V Shape with Button', en:'V Shape Organizer Unit', price:28, images:['xbloom_tower_v_button_01.jpeg'], badge:'xBloom'},
   {cat:'xbloom', name:'واجهة xBloom', en:'xBloom Front Cover', price:8, images:['xbloom_front_01.jpeg','xbloom_front_02.jpeg'], badge:'xBloom'},
@@ -90,6 +91,7 @@ const PRODUCTS = [
   {cat:'xbloom', name:'منظم xBloom', en:'xBloom Organizer', price:20, images:['xbloom_organizer_extra.jpeg','xbloom_organizer_fixed_01.jpeg','xbloom_organizer_fixed_02.jpeg'], badge:'xBloom'},
   {cat:'xbloom', name:'منظم xBloom مع كبسولات', en:'xBloom Organizer + Capsules', price:25, images:['img_026.jpg'], badge:'xBloom'},
   {cat:'accessories', name:'ستاند Dyson', en:'Dyson Stand', price:15, images:['dyson_stand_01.jpeg','dyson_stand_05.jpeg','dyson_stand_02.jpeg','dyson_stand_03.jpeg','dyson_stand_04.jpeg'], badge:'اكسسوارات'},
+  {cat:'occasions', name:'بوكس قبعة التخرج ٦ × ٩', en:'Graduation Cap Box 6×9', price:4, images:['graduation_cap_box_02.jpeg','graduation_cap_box_01.jpeg'], badge:'مناسبات', note:'السعر ٤ د.ك — غير مشمول المغناطيس قياس ٦ × ٢ مم'},
   {cat:'occasions', name:'تقديم عيدية عيد الأضحى', en:'Eid Al-Adha Gift Holder', price:0.25, priceLabel:'0.250', minQty:20, noColor:true, note:'أقل طلب 20 حبة — السعر للحبة', images:['eid_ad_01.jpeg','eid_sheep_02.jpeg','eid_sheep_03.jpeg','eid_sheep_04.jpeg','eid_sheep_05.jpeg','eid_sheep_06.jpeg'], badge:'مناسبات'}
 ];
 let cart=[];let currentCat='all';let lbImgs=[];let lbIdx=0;
