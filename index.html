@@ -169,7 +169,7 @@ function sendOrder(){
     '💰 الإجمالي: '+fmt(total)+' د.ك'
   ];
   if(notes)lines.push('','📝 ملاحظات: '+notes);
-  lines.push('','📌 سيتم تأكيد اللون النهائي عبر الواتساب قبل اعتماد الطلب وإرسال رابط الدفع.','','🤍 شكراً لاختياركم MR.3D KW');
+  lines.push('','🤍 شكراً لاختياركم MR.3D KW');
   const message=lines.join('\n');
   document.getElementById('success-order-box').textContent=message;
   document.getElementById('success-page').style.display='flex';
