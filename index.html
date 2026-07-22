@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>MR.3D KW | كاتلوج المنتجات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#0f1012;--bg:#f7f3ea;--surface:#fffaf1;--gold:#b9934d;--text:#1e1e1e;--muted:#7b7469;--border:#e6dccd;--radius:20px;--green:#25D366}
+*{box-sizing:border-box}body{margin:0;font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--text)}
+header{height:64px;background:var(--dark);padding:0 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000;box-shadow:0 8px 28px rgba(0,0,0,.16)}
+.header-logo{width:44px;height:44px;border-radius:12px;object-fit:cover}.header-tag{color:#fff;font-size:13px;font-weight:800;opacity:.9}.header-cta,.primary-btn{background:var(--gold);color:#fff;text-decoration:none;border:0;border-radius:999px;padding:10px 16px;font-weight:800;font-family:inherit;cursor:pointer}
+.hero{background:linear-gradient(135deg,#111,#252525);padding:42px 20px 36px;display:flex;align-items:center;gap:22px;color:#fff}.hero-logo{width:92px;height:92px;border-radius:26px;object-fit:cover;border:2px solid rgba(255,255,255,.12)}
+.hero-title{font-size:32px;font-weight:900;line-height:1.05}.hero-title em{font-size:16px;color:var(--gold);font-style:normal}.hero-sub{margin-top:10px;color:rgba(255,255,255,.72);font-weight:600}
+.info-strip{background:#fff;padding:12px 18px;display:flex;gap:10px;overflow-x:auto;border-bottom:1px solid var(--border)}.chip{white-space:nowrap;background:#f2eadc;border:1px solid var(--border);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:800;color:#4d463d}
+.filter-bar{position:sticky;top:64px;z-index:900;background:rgba(247,243,234,.94);backdrop-filter:blur(10px);padding:12px 16px;display:flex;gap:8px;overflow-x:auto;border-bottom:1px solid var(--border)}
+.filter-btn{border:1px solid var(--border);background:#fff;border-radius:999px;padding:9px 14px;font-family:inherit;font-weight:800;cursor:pointer;white-space:nowrap}.filter-btn.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 110px}.section-heading{display:flex;align-items:center;justify-content:space-between;margin:8px 0 18px}.section-heading h2{margin:0;font-size:24px}.section-count{font-size:13px;background:#efe5d3;padding:6px 10px;border-radius:999px;color:#7b602c;font-weight:900}
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}.product-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:0 10px 28px rgba(30,25,18,.055)}.product-card.hidden{display:none}.card-badge{position:absolute;top:12px;right:12px;z-index:2;background:rgba(15,16,18,.82);color:#fff;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900}.card-media{position:relative;background:#eee;height:240px;cursor:pointer}.gallery-img{width:100%;height:240px;object-fit:cover;object-position:center;display:none}.gallery-img.active{display:block}.gallery-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:6px}.dot{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.62);cursor:pointer}.dot.active{background:var(--gold);width:22px;border-radius:999px}.card-body{padding:15px}.card-category{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:.8px}.card-name{font-size:18px;font-weight:900;margin-top:5px}.card-name-en{font-size:12px;color:var(--muted);margin-top:2px}.colors-note{font-size:12px;color:var(--muted);margin:10px 0}.product-note{font-size:12px;background:#fff3d8;border:1px solid #edd3a3;color:#765725;border-radius:11px;padding:8px 10px;margin:10px 0;font-weight:800}.color-selector-label{display:block;font-size:12px;font-weight:900;margin-bottom:7px}.color-options{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}.color-opt{border:1px solid var(--border);background:#fff;border-radius:999px;padding:6px 9px;font-family:inherit;font-size:12px;font-weight:800;cursor:pointer}.color-opt.selected{background:var(--dark);color:#fff;border-color:var(--dark)}.card-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:12px}.card-price{font-size:22px;font-weight:900;color:var(--gold)}.card-price sub{font-size:12px}.add-cart-btn{margin-top:12px;width:100%;border:0;background:var(--dark);color:#fff;border-radius:12px;padding:12px;font-family:inherit;font-weight:900;cursor:pointer}.add-cart-btn.added{background:#1D9E75}.empty-state{text-align:center;color:var(--muted);padding:42px 10px;display:none}
+.cart-btn-float.pulse{animation:cartPulse .35s ease}.qty-control{display:inline-flex;align-items:center;gap:7px;margin-top:7px}.qty-btn{border:0;background:#f0ede8;border-radius:9px;width:28px;height:28px;cursor:pointer;font-weight:900}.qty-num{min-width:22px;text-align:center;font-weight:900}@keyframes cartPulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}.cart-btn-float{position:fixed;bottom:20px;left:20px;background:var(--dark);color:#fff;border:0;border-radius:999px;padding:14px 18px;font-family:inherit;font-weight:900;z-index:1200;box-shadow:0 8px 30px rgba(0,0,0,.25);cursor:pointer}.cart-count{background:var(--gold);display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:50%;margin-right:6px;font-size:12px}.cart-drawer{position:fixed;top:0;left:-430px;width:100%;max-width:410px;height:100%;background:#fff;z-index:1300;padding:20px;box-shadow:10px 0 35px rgba(0,0,0,.18);transition:.25s;overflow-y:auto}.cart-drawer.open{left:0}.cart-drawer-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.close-btn{border:0;background:#f0ede8;border-radius:12px;width:38px;height:38px;cursor:pointer;font-size:18px}.cart-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--border);padding:11px 0}.cart-item strong{display:block}.remove-btn{border:0;background:#fff2f2;color:#b00020;border-radius:10px;padding:6px 9px;cursor:pointer}.cart-summary{background:#f7f3ea;border-radius:16px;padding:12px;margin:14px 0}.summary-row{display:flex;justify-content:space-between;margin:6px 0;font-weight:800}.summary-row.total{border-top:1px solid var(--border);padding-top:8px;color:var(--gold);font-size:18px}.cart-label{font-size:12px;font-weight:900;margin:9px 0 5px;display:block}.cart-input{width:100%;border:1px solid var(--border);border-radius:12px;padding:12px;font-family:inherit;background:#fff}.color-mode-box{background:#f7f3ea;border:1px solid var(--border);border-radius:16px;padding:12px;margin:14px 0}.color-mode-title{font-weight:900;margin-bottom:9px}.color-mode-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.color-mode-btn{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px;font-family:inherit;font-weight:900;cursor:pointer}.color-mode-btn.active{background:var(--dark);color:#fff;border-color:var(--dark)}.item-color-input{margin-top:8px;padding:9px 10px}.cart-item-main{flex:1}.cart-item small{display:block;color:var(--muted);margin-top:3px}.wa-submit-btn{width:100%;margin-top:12px;background:var(--green);color:#fff;border:0;border-radius:13px;padding:14px;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer}.success-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:2000;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}.success-icon{width:72px;height:72px;border-radius:50%;background:#1D9E75;color:#fff;display:flex;align-items:center;justify-content:center;font-size:34px;margin-bottom:20px}.success-order{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px;text-align:right;max-width:420px;width:100%;white-space:pre-line;font-size:13px}.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:1900;align-items:center;justify-content:center;padding:20px}.lightbox img{max-width:94vw;max-height:84vh;border-radius:18px;object-fit:contain}.lightbox button{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer}.lightbox-close{top:18px;left:18px}.lb-prev{right:18px;top:50%}.lb-next{left:18px;top:50%}footer{background:var(--dark);color:rgba(255,255,255,.72);padding:24px 20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px}.social-link{color:#fff;text-decoration:none}.admin-note{margin-top:28px;background:#fff8e8;border:1px dashed var(--gold);border-radius:18px;padding:14px;color:#6d5629;font-size:13px;line-height:1.7}
+
+.search-wrap{max-width:1180px;margin:14px auto 0;padding:0 16px}.search-box{width:100%;border:1px solid var(--border);border-radius:16px;padding:13px 15px;font-family:inherit;background:#fff;font-size:15px}.cart-actions{display:flex;justify-content:flex-end;margin:8px 0}.clear-cart-btn{border:1px solid #efcaca;background:#fff4f4;color:#a31621;border-radius:10px;padding:8px 11px;font-family:inherit;font-weight:900;cursor:pointer}.availability-badge{position:absolute;top:12px;left:12px;z-index:3;background:#b00020;color:#fff;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900}.tag-stack{position:absolute;top:12px;right:12px;z-index:3;display:flex;flex-direction:column;gap:6px}.tag-pill{background:rgba(15,16,18,.84);color:#fff;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900}.tag-pill.new{background:#1D9E75}.tag-pill.best{background:var(--gold)}.add-cart-btn:disabled{background:#aaa;cursor:not-allowed}.confirm-note{background:#fff3d8;border:1px solid #edd3a3;color:#765725;border-radius:12px;padding:10px;margin:12px 0;font-size:13px;font-weight:800;line-height:1.6}.confirm-check{display:flex;gap:8px;align-items:flex-start;font-size:13px;font-weight:800;margin:10px 0}.delivery-note{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+@media(max-width:560px){
+.hero-title{font-size:25px}.hero-logo{width:74px;height:74px}
+.catalog-grid{grid-template-columns:1fr;gap:14px}.card-media,.gallery-img{height:300px}
+.card-name{font-size:18px}.card-body{padding:14px}.cart-drawer{max-width:none;padding:16px}
+.header-tag{display:none}.search-box,.cart-input,.item-color-input,textarea,select{font-size:16px!important}
+.search-box,.cart-input{min-height:48px}.wa-submit-btn,.add-cart-btn,.color-mode-btn{min-height:48px;font-size:16px}
+.qty-btn{width:38px;height:38px;font-size:20px}.cart-btn-float{left:12px;bottom:12px;padding:14px 17px}
+main{padding-left:12px;padding-right:12px}.section-heading h2{font-size:21px}
+}.hero-logo{width:74px;height:74px}.catalog-grid{grid-template-columns:1fr 1fr;gap:12px}.card-media,.gallery-img{height:170px}.card-name{font-size:15px}.card-body{padding:12px}.cart-drawer{max-width:none}.header-tag{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <img src="img_001.jpg" alt="MR.3D KW" class="header-logo" />
+  <div class="header-tag">🇰🇼 كاتلوج MR.3D KW</div>
+  <a href="https://wa.me/96599667594" class="header-cta" target="_blank">واتساب 📲</a>
+</header>
+<section class="hero">
+  <img src="img_001.jpg" alt="MR.3D KW" class="hero-logo" />
+  <div>
+    <div class="hero-title">MR.3D KW<br><em>صُنع في الكويت</em></div>
+    <div class="hero-sub">طباعة ثلاثية الأبعاد — اختر المنتجات وحدد الألوان عند إتمام الطلب</div>
+  </div>
+</section>
+<div class="info-strip">
+  <span class="chip">🎨 ألوان متعددة</span><span class="chip">📦 طلب حسب التجهيز</span><span class="chip">🚚 التوصيل 2 د.ك</span><span class="chip">☕ إكسسوارات xBloom</span>
+</div>
+<div class="search-wrap"><input id="search-input" class="search-box" type="search" placeholder="ابحث عن منتج..." oninput="setSearch(this.value)"></div>
+<div class="filter-bar" id="filter-bar"></div>
+<main>
+  <div class="section-heading"><h2 id="section-title">كل المنتجات</h2><span class="section-count" id="section-count">0 منتج</span></div>
+  <div class="catalog-grid" id="catalog"></div>
+  <div class="empty-state" id="empty-state">لا توجد منتجات في هذا القسم حالياً</div>
+</main>
+<button class="cart-btn-float" onclick="toggleCart()">السلة <span class="cart-count" id="cart-count">0</span></button>
+<aside class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header"><h2>سلة الطلب</h2><button class="close-btn" onclick="toggleCart()">×</button></div>
+  <div class="cart-actions"><button class="clear-cart-btn" onclick="clearCart()">تفريغ السلة</button></div>
+  <div id="cart-items-list"></div>
+  <div class="cart-summary" id="cart-summary"></div>
+  <div id="cart-form">
+    <div class="color-mode-box">
+      <div class="color-mode-title">طريقة تحديد الألوان</div>
+      <div class="color-mode-options">
+        <button type="button" class="color-mode-btn active" id="mode-all-btn" onclick="setColorMode('all')">كل المنتجات بلون واحد</button>
+        <button type="button" class="color-mode-btn" id="mode-each-btn" onclick="setColorMode('each')">لون مختلف لكل منتج</button>
+      </div>
+      <div id="all-color-wrap">
+        <label class="cart-label">اكتب لون جميع المنتجات</label>
+        <input class="cart-input" id="c-all-color" placeholder="مثال: بيج، أبيض، ماربل" oninput="saveOrderForm()" />
+      </div>
+    </div>
+    <label class="cart-label">الاسم</label><input class="cart-input" id="c-name" placeholder="مثال: عبدالله" oninput="saveOrderForm()" />
+    <label class="cart-label">رقم الواتساب</label><input class="cart-input" id="c-phone" inputmode="numeric" placeholder="مثال: 99123456" oninput="saveOrderForm()" />
+    <label class="cart-label">عنوان التوصيل</label><textarea class="cart-input" id="c-address" rows="3" placeholder="المنطقة، القطعة، الشارع، المنزل" oninput="saveOrderForm()"></textarea>
+    <label class="cart-label">ملاحظات اختيارية</label><textarea class="cart-input" id="c-notes" rows="2" placeholder="أي ملاحظة على الطلب" oninput="saveOrderForm()"></textarea>
+    <div class="confirm-note">🎨 سيتم تأكيد اللون النهائي وتوفّره عبر الواتساب قبل اعتماد الطلب وإرسال رابط الدفع.</div>
+    <label class="confirm-check"><input type="checkbox" id="c-confirm"> <span>راجعت المنتجات والكميات، وأعلم أن اللون سيتم تأكيده عبر الواتساب قبل بدء التصنيع.</span></label>
+    <button class="wa-submit-btn" onclick="sendOrder()">إرسال الطلب عبر الواتساب 📲</button>
+    <div class="delivery-note">🚚 رسوم التوصيل 2 د.ك</div>
+  </div>
+</aside>
+<div class="success-page" id="success-page"><div class="success-icon">✓</div><h2>تم تجهيز الطلب</h2><p>سوف يتم تحويلك للواتساب لإرسال تفاصيل الطلب</p><div class="success-order" id="success-order-box"></div><br><button class="primary-btn" onclick="location.reload()">طلب جديد</button></div>
+<div class="lightbox" id="lightbox"><button class="lightbox-close" onclick="closeLightbox()">×</button><button class="lb-prev" onclick="moveLightbox(-1)">›</button><img id="lightbox-img" src="" alt=""><button class="lb-next" onclick="moveLightbox(1)">‹</button></div>
+<footer><div>MR.3D KW © 2026</div><a class="social-link" href="https://wa.me/96599667594" target="_blank">تواصل واتساب</a></footer>
+<script>
+/*
+==================== منطقة التعديل السهلة ====================
+لتغيير رقم الواتساب: عدل WHATSAPP_NUMBER
+لإضافة منتج: انسخ أي منتج من PRODUCTS وغيّر الاسم والسعر والصور
+الصور لازم تكون مرفوعة بنفس ملفات الموقع، مثال: img_076.jpg
+===============================================================
+*/
+const WHATSAPP_NUMBER = '96599667594';
+const DELIVERY = 2;
+const COLORS = ['بيج','أبيض','أسود','نيفي بلو','سيج جرين','أخضر','وردي','سماوي','تيفاني','ماربل'];
+const CATEGORIES = {all:'الكل', xbloom:'☕ xBloom', accessories:'اكسسوارات', occasions:'مناسبات'};
+const PRODUCTS = [
+  {cat:'xbloom', name:'ستاند xBloom في شيب مع زر', en:'', price:28, isNew:true, bestSeller:true, details:'تصميم V Shape مع زر', images:['xbloom_tower_v_button_01.jpg','xbloom_tower_v_button_02.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'xBloom Tower', en:'xBloom Tower', price:25, bestSeller:true, details:'تاور xBloom كلاسيكي', images:['img_074.jpg','img_002.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'واجهة xBloom', en:'xBloom Front Cover', price:8, images:['xbloom_front_01.jpeg','xbloom_front_02.jpeg'], badge:'xBloom'},
+  {cat:'xbloom', name:'كفر دقم xBloom', en:'xBloom Knob Cover', price:3, images:['img_075.jpg','img_003.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'ملاعق الحبة', en:'Coffee Bean Spoons', price:2, images:['img_004.jpg','img_005.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'جامع البن الدائري', en:'Round Coffee Collector', price:4, images:['round_collector_01.jpeg','img_073.jpg','img_007.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'جامع البن المربع', en:'Coffee Bean Box', price:4, images:['img_008.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'مجسم كوب', en:'Cup Figurine', price:4, images:['img_010.jpg','img_011.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'مجسم بن القهوة', en:'Coffee Bean Figurine', price:4, images:['img_071.jpg','coffee_bean_fig_02.jpeg'], badge:'xBloom'},
+  {cat:'xbloom', name:'مثبت فلاتر', en:'Filter Holder', price:4, images:['img_014.jpg','img_015.jpg','img_016.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'تخزين فلاتر', en:'Filter Storage', price:6, images:['img_017.jpg','img_018.jpg','img_019.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'شبك الميزان', en:'Scale Grid', price:4, images:['img_072.jpg','img_020.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'مجسم فلتر', en:'Filter Figurine', price:4, images:['img_070.jpg','img_022.jpg','img_023.jpg'], badge:'xBloom'},
+  {cat:'xbloom', name:'منظم xBloom', en:'xBloom Organizer', price:20, details:'منظم أدوات xBloom', images:['xbloom_organizer_extra.jpeg','xbloom_organizer_fixed_01.jpeg','xbloom_organizer_fixed_02.jpeg'], badge:'xBloom'},
+  {cat:'xbloom', name:'منظم xBloom مع كبسولات', en:'xBloom Organizer + Capsules', price:25, images:['img_026.jpg'], badge:'xBloom'},
+  {cat:'accessories', name:'ستاند Dyson', en:'Dyson Stand', price:15, images:['dyson_stand_01.jpeg','dyson_stand_05.jpeg','dyson_stand_02.jpeg','dyson_stand_03.jpeg','dyson_stand_04.jpeg'], badge:'اكسسوارات'},
+  {cat:'occasions', name:'تقديم عيدية عيد الأضحى', en:'Eid Al-Adha Gift Holder', price:0.25, priceLabel:'0.250', minQty:20, noColor:true, available:false, note:'أقل طلب 20 حبة — السعر للحبة', images:['eid_ad_01.jpeg','eid_sheep_02.jpeg','eid_sheep_03.jpeg','eid_sheep_04.jpeg','eid_sheep_05.jpeg','eid_sheep_06.jpeg'], badge:'مناسبات'}
+];
+let cart=[];let currentCat='all';let searchText='';let lbImgs=[];let lbIdx=0;let colorMode=localStorage.getItem('mr3dkw_color_mode')||'all';
+function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function renderFilters(){const bar=document.getElementById('filter-bar');bar.innerHTML=Object.entries(CATEGORIES).map(([key,label])=>`<button class="filter-btn ${key==='all'?'active':''}" onclick="filterCat('${key}',this)">${label}</button>`).join('');}
+function visibleProducts(){return PRODUCTS.filter(p=>(currentCat==='all'||p.cat===currentCat)&&(!searchText||((p.name+' '+(p.en||'')).toLowerCase().includes(searchText))))} function renderProducts(){const catProducts=visibleProducts();document.getElementById('section-title').textContent=currentCat==='all'?'كل المنتجات':CATEGORIES[currentCat];document.getElementById('section-count').textContent=catProducts.length+' منتج';document.getElementById('empty-state').style.display=catProducts.length?'none':'block';document.getElementById('catalog').innerHTML=catProducts.map((p,idx)=>productCard(p,idx)).join('');} function setSearch(v){searchText=(v||'').trim().toLowerCase();renderProducts();}
+function productCard(p,idx){const id='g'+idx+'_'+Math.random().toString(36).slice(2,7);const imgs=(p.images&&p.images.length?p.images:['img_001.jpg']);const priceText=p.priceLabel||p.price;const noteHtml=p.note?`<div class="product-note">${escapeHtml(p.note)}</div>`:'';const tags=`<div class="tag-stack"><span class="tag-pill">${escapeHtml(p.badge||CATEGORIES[p.cat]||'منتج')}</span>${p.isNew?'<span class="tag-pill new">جديد</span>':''}${p.bestSeller?'<span class="tag-pill best">الأكثر مبيعًا</span>':''}</div>`;return `<div class="product-card" data-cat="${escapeHtml(p.cat)}">${tags}${p.available===false?'<span class="availability-badge">غير متوفر حالياً</span>':''}<div class="card-media" id="${id}" onclick="openLightbox(${idx})">${imgs.map((src,i)=>`<img class="gallery-img ${i===0?'active':''}" src="${escapeHtml(src)}" alt="${escapeHtml(p.name)}" loading="lazy">`).join('')} ${imgs.length>1?`<div class="gallery-dots">${imgs.map((_,i)=>`<button class="dot ${i===0?'active':''}" onclick="event.stopPropagation();showImg('${id}',${i},this)"></button>`).join('')}</div>`:''}</div><div class="card-body"><div class="card-category">${escapeHtml(CATEGORIES[p.cat]||p.cat)}</div><div class="card-name">${escapeHtml(p.name)}</div>${noteHtml}<div class="card-footer"><div class="card-price">${priceText} <sub>د.ك</sub></div></div><button class="add-cart-btn" ${p.available===false?'disabled':''} onclick="handleAddToCart(this, ${idx})">${p.available===false?'غير متوفر حالياً':'+ أضف للسلة'}</button></div></div>`}
+function filterCat(cat,btn){currentCat=cat;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderProducts();}
+function showImg(galleryId,index,btn){const g=document.getElementById(galleryId);g.querySelectorAll('.gallery-img').forEach((img,i)=>img.classList.toggle('active',i===index));g.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===index));}
+function saveCart(){localStorage.setItem('mr3dkw_cart', JSON.stringify(cart));}
+function loadCart(){try{cart=JSON.parse(localStorage.getItem('mr3dkw_cart'))||[]}catch(e){cart=[]}}
+function cartQty(){return cart.reduce((sum,item)=>sum+(item.qty||1),0)}
+function cartSubtotal(){return cart.reduce((sum,item)=>sum+(Number(item.price)||0)*(item.qty||1),0)}
+function pulseCart(){const b=document.querySelector('.cart-btn-float');if(!b)return;b.classList.remove('pulse');void b.offsetWidth;b.classList.add('pulse');setTimeout(()=>b.classList.remove('pulse'),380)}
+function handleAddToCart(btn,idx){const visible=visibleProducts();const p=visible[idx];if(!p)return;const minQty=p.minQty||1;const existing=cart.find(item=>item.name===p.name);if(existing){existing.qty=(existing.qty||minQty)+1}else{cart.push({name:p.name,price:Number(p.price)||0,priceLabel:p.priceLabel||String(p.price),color:p.noColor?'حسب الصورة':'',noColor:!!p.noColor,qty:minQty,minQty})}saveCart();updateCart();pulseCart();document.getElementById('cart-drawer').classList.add('open');btn.textContent='✓ تمت الإضافة للسلة';btn.classList.add('added');setTimeout(()=>{btn.textContent='+ أضف للسلة';btn.classList.remove('added')},900);}
+function clearCart(){if(!cart.length)return;if(confirm('هل تريد تفريغ السلة؟')){cart=[];updateCart();}} function toggleCart(){document.getElementById('cart-drawer').classList.toggle('open');updateCart();}
+function setColorMode(mode){colorMode=mode;localStorage.setItem('mr3dkw_color_mode',mode);document.getElementById('mode-all-btn')?.classList.toggle('active',mode==='all');document.getElementById('mode-each-btn')?.classList.toggle('active',mode==='each');const wrap=document.getElementById('all-color-wrap');if(wrap)wrap.style.display=mode==='all'?'block':'none';updateCart();}
+function updateItemColor(i,value){if(cart[i]){cart[i].color=value;saveCart();}}
+function updateCart(){document.getElementById('cart-count').textContent=cartQty();const list=document.getElementById('cart-items-list');const summary=document.getElementById('cart-summary');document.getElementById('mode-all-btn')?.classList.toggle('active',colorMode==='all');document.getElementById('mode-each-btn')?.classList.toggle('active',colorMode==='each');const wrap=document.getElementById('all-color-wrap');if(wrap)wrap.style.display=colorMode==='all'?'block':'none';if(!cart.length){list.innerHTML='<p style="color:var(--muted);text-align:center">السلة فارغة</p>';summary.innerHTML='';saveCart();return;}list.innerHTML=cart.map((i,n)=>`<div class="cart-item"><div class="cart-item-main"><strong>${escapeHtml(i.name)}</strong><small>السعر: ${escapeHtml(i.priceLabel||i.price)} د.ك للقطعة${i.minQty&&i.minQty>1?' — أقل طلب '+i.minQty:''}</small>${colorMode==='each'&&!i.noColor?`<input class="cart-input item-color-input" placeholder="اكتب لون هذا المنتج" value="${escapeHtml(i.color||'')}" oninput="updateItemColor(${n},this.value)">`:''}<div class="qty-control"><button class="qty-btn" onclick="changeQty(${n},-1)">−</button><span class="qty-num">${i.qty||1}</span><button class="qty-btn" onclick="changeQty(${n},1)">+</button></div></div><button class="remove-btn" onclick="removeItem(${n})">حذف</button></div>`).join('');const subtotal=cartSubtotal(),total=subtotal+DELIVERY;summary.innerHTML=`<div class="summary-row"><span>المجموع</span><span>${subtotal.toFixed(3).replace(/\.?0+$/,'')} د.ك</span></div><div class="summary-row"><span>التوصيل</span><span>${DELIVERY} د.ك</span></div><div class="summary-row total"><span>الإجمالي</span><span>${total.toFixed(3).replace(/\.?0+$/,'')} د.ك</span></div>`;saveCart();}
+function changeQty(i,delta){if(!cart[i])return;const minQty=cart[i].minQty||1;const newQty=(cart[i].qty||minQty)+delta;if(newQty<minQty){cart.splice(i,1)}else{cart[i].qty=newQty}updateCart();}
+function removeItem(i){cart.splice(i,1);updateCart();}
+function saveOrderForm(){const data={name:document.getElementById('c-name')?.value||'',phone:document.getElementById('c-phone')?.value||'',address:document.getElementById('c-address')?.value||'',notes:document.getElementById('c-notes')?.value||'',allColor:document.getElementById('c-all-color')?.value||''};localStorage.setItem('mr3dkw_order_form',JSON.stringify(data));}
+function loadOrderForm(){try{const d=JSON.parse(localStorage.getItem('mr3dkw_order_form'))||{};if(document.getElementById('c-name'))document.getElementById('c-name').value=d.name||'';if(document.getElementById('c-phone'))document.getElementById('c-phone').value=d.phone||'';if(document.getElementById('c-address'))document.getElementById('c-address').value=d.address||'';if(document.getElementById('c-notes'))document.getElementById('c-notes').value=d.notes||'';if(document.getElementById('c-all-color'))document.getElementById('c-all-color').value=d.allColor||'';}catch(e){}}
+function sendOrder(){
+  if(!cart.length){alert('السلة فارغة');return;}
+  const name=document.getElementById('c-name').value.trim();
+  const phone=document.getElementById('c-phone').value.trim();
+  const address=document.getElementById('c-address').value.trim();
+  const notes=document.getElementById('c-notes').value.trim();
+  const allColor=document.getElementById('c-all-color').value.trim();
+  if(!name||!phone||!address){alert('يرجى تعبئة الاسم ورقم الواتساب وعنوان التوصيل');return;}
+  if(!document.getElementById('c-confirm').checked){alert('يرجى تأكيد مراجعة الطلب وملاحظة اللون');return;}
+  if(colorMode==='all'&&!allColor&&cart.some(i=>!i.noColor)){alert('يرجى كتابة لون جميع المنتجات');return;}
+  if(colorMode==='each'&&cart.some(i=>!i.noColor&&!(i.color||'').trim())){alert('يرجى كتابة لون كل منتج');return;}
+  const subtotal=cartSubtotal(),total=subtotal+DELIVERY;
+  const fmt=n=>Number(n).toFixed(3).replace(/\.?0+$/,'');
+  const orderDate=new Intl.DateTimeFormat('ar-KW',{year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  const orderLines=cart.map((item,i)=>{
+    const chosenColor=item.noColor?'حسب الصورة':(colorMode==='all'?allColor:(item.color||'').trim());
+    const itemTotal=(Number(item.price)||0)*(item.qty||1);
+    return `${i+1}) ${item.name}\nالكمية: ${item.qty||1}\nاللون: ${chosenColor}\nالسعر: ${fmt(itemTotal)} د.ك`;
+  }).join('\n\n');
+  const lines=[
+    '🛒 طلب جديد | MR.3D KW',
+    '',
+    '📅 تاريخ الطلب: '+orderDate,
+    '',
+    orderLines,
+    '',
+    '🚚 التوصيل: '+DELIVERY+' د.ك',
+    '💰 الإجمالي: '+fmt(total)+' د.ك'
+  ];
+  if(notes)lines.push('','📝 ملاحظات: '+notes);
+  lines.push('','🤍 شكراً لاختياركم MR.3D KW');
+  const message=lines.join('\n');
+  document.getElementById('success-order-box').textContent=message;
+  document.getElementById('success-page').style.display='flex';
+  localStorage.removeItem('mr3dkw_cart');localStorage.removeItem('mr3dkw_order_form');
+  setTimeout(()=>{window.location.href='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(message);},650);
+}
+function openLightbox(renderedIdx){const visible=visibleProducts();lbImgs=visible[renderedIdx].images||['img_001.jpg'];lbIdx=0;document.getElementById('lightbox-img').src=lbImgs[lbIdx];document.getElementById('lightbox').style.display='flex';}
+function closeLightbox(){document.getElementById('lightbox').style.display='none'}
+function moveLightbox(dir){if(!lbImgs.length)return;lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length;document.getElementById('lightbox-img').src=lbImgs[lbIdx];}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});loadCart();renderFilters();renderProducts();loadOrderForm();setColorMode(colorMode);updateCart();
+</script>
+</body>
+</html>
